@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#Directions for use - Configure the runtime
+#==========================================
+#To set the script to run once an hour for 24 hours
+#	Set the interval on line 11 to 3600 (60 minutes)
+#	Set the number of cycles on line 3 to 24
+#
+#To set the script to run twice an hour for 12 hours
+#	Set the interval on line 11 to 1800 (30 minutes)
+#	Set the number of cycles on line 3 to 12
+#
+#To set the script to run 4x an hour for 6 hours
+#	Set the interval on line 11 to 900 (15 minutes)
+#	Set the number of cycles on line 3 to 6
+
+touch hyperion-drift.txt   #Creates the log file
+CYCLE="1"                  #Sets the number of cycles to 1
+while ((CYCLE<=24))        #Sets the number of cycles to run the job
+do                         #Starts loop
+	echo "Begin Poll # $CYCLE: `date`" >> hyperion-drift.txt   #Append date and time to log
+		ntpq -p >> hyperion-drift.txt                      #Append update servers to log
+		ntpstat >> hyperion-drift.txt                      #Append clock drift to log
+		echo "End Poll # $CYCLE" >> hyperion-drift.txt     #End of this log session
+		echo $'\n' >> hyperion-drift.txt                   #Add line break between polls
+		sleep 3600                        #Seconds between polling intervals
+		CYCLE=$(($CYCLE+1))               #Increase the cycle value
+done                                              #Ends loop
+#Once job is complete add date to file name and move to log file directory.
+mkdir -p ~/driftlogs   #Creates the folder for the log files if none exists
+mv hyperion-drift.txt driftlogs/$(date +%F).hyperion-drift.txt   #Moves and renames file
+
+#EoF	
+

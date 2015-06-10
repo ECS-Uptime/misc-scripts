@@ -1,0 +1,19 @@
+This file assumes that you have NTP running on your machine. You can check this in the /etc/cron.daily directory. If there is a file called ntp present, it is installed.
+
+If NTP is not present, you can install it with the following:
+sudo apt-get install ntp
+
+If, for any reason NTP causes an issue it can be removed with:
+sudo apt-get purge ntp
+
+To run the script, download the zip file and extract it in your download directory.
+Move 'drift-test' to /etc/cron.daily
+Move 'ntp.conf' to /etc/
+
+This will run the script 'drift-test' as a daily cron job. The actual time that the script is run may vary according to your particular Ubuntu configuration. Changing the time your local cron jobs run is beyond the scope of this instruction.
+
+You can change the configuration of the drift test file by opening it a text editor. Instructions for changing the configuration are commented in the file.
+
+The script creates a repository of daily log files in your 'Home' directory called /driftlogs. This is where you can view the clock drift log reports.
+
+Have fun!
