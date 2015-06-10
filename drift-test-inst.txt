@@ -10,6 +10,9 @@ To run the script, download the zip file and extract it in your download directo
 Move 'drift-test' to /etc/cron.daily
 Move 'ntp.conf' to /etc/
 
+You may need to ensure the 'drift-test' file is executable:
+sudo chmod +x /etc/cron.daily
+
 This will run the script 'drift-test' as a daily cron job. The actual time that the script is run may vary according to your particular Ubuntu configuration. Changing the time your local cron jobs run is beyond the scope of this instruction.
 
 You can change the configuration of the drift test file by opening it a text editor. Instructions for changing the configuration are commented in the file.
