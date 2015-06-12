@@ -20,13 +20,22 @@ sudo apt-get purge ntpstat
 
 
 To run the script, download the zip file and extract it in your download directory. You can also download n]and extract the files directly in your terminal with the following:
+<<<<<<< HEAD
 wget https://github.com/ECS-Uptime/misc-scripts/archive/v1.1.tar.gz
 tar -xzf v1.1.tar.gz
+=======
+wget https://github.com/ECS-Uptime/misc-scripts/archive/v1.0.tar.gz
+tar -xzf v1.0.tar.gz
+>>>>>>> origin/master
 
 
 
 Move 'drift-test' to /etc/cron.daily
+<<<<<<< HEAD
 cd misc-scripts-1.1
+=======
+cd misc-scripts-1.0
+>>>>>>> origin/master
 sudo mv drift-test /etc/cron.daily
 
 
